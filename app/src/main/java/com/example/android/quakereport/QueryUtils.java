@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -48,19 +49,30 @@ public final class QueryUtils {
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
+
+            // Initialise the parsed JSON object
+            // get "features" array
             JSONObject quakeObj = new JSONObject(SAMPLE_JSON_RESPONSE);
             JSONArray quakeArr = quakeObj.getJSONArray("features");
+
+            // Loop array for all earthquake objects
             for (int i = 0; i < quakeArr.length(); i++) {
                 JSONObject ithObject = quakeArr.getJSONObject(i);
+
+                //get earthquake information from properties
                 JSONObject propertiesObject = ithObject.getJSONObject("properties");
                 double mag = propertiesObject.getDouble("mag");
                 String place = propertiesObject.getString("place");
                 long time = propertiesObject.getLong("time");
-                earthquakes.add(new Earthquake(mag, place, time));
+
+                // convert Date
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+                String dateToDisplay = dateFormatter.format(time);
+
+                // pass in information to Adapter to populate list
+                earthquakes.add(new Earthquake(mag, place, dateToDisplay));
 
             }
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
