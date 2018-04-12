@@ -32,13 +32,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Find respective resource files to update from xml
         // Update restaurant information with name, description and image
         TextView earthquakeMag = (TextView) convertView.findViewById(R.id.quakeMag);
-        earthquakeMag.setText(currentEarthquake.getEarthquakeMagnitude());
+        earthquakeMag.setText(Double.valueOf(currentEarthquake.getEarthquakeMagnitude()).toString());
 
         TextView earthquakeLocation = (TextView) convertView.findViewById(R.id.quakeLocation);
         earthquakeLocation.setText(currentEarthquake.getEarthquakeLocation());
 
         TextView earthquakeDate = (TextView) convertView.findViewById(R.id.quakeDate);
-        earthquakeDate.setText(currentEarthquake.getEarthquakeDate());
+        earthquakeDate.setText(Long.toString(currentEarthquake.getEarthquakeDate()));
 
         return convertView;
     }

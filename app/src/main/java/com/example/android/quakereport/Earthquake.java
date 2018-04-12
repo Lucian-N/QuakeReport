@@ -6,17 +6,17 @@ package com.example.android.quakereport;
 
 public class Earthquake {
 
-    private String earthquakeMagnitude;
+    private double earthquakeMagnitude;
     private String earthquakeLocation;
-    private String earthquakeDate;
+    private long earthquakeDate;
 
-    public Earthquake(String earthquakeMagnitudeId, String earthquakeLocationId, String earthquakeDateId) {
+    public Earthquake(double earthquakeMagnitudeId, String earthquakeLocationId, long earthquakeDateId) {
         earthquakeMagnitude = earthquakeMagnitudeId;
         earthquakeLocation = earthquakeLocationId;
         earthquakeDate = earthquakeDateId;
     }
 
-    public String getEarthquakeMagnitude() {
+    public double getEarthquakeMagnitude() {
         return earthquakeMagnitude;
     }
 
@@ -24,7 +24,7 @@ public class Earthquake {
         return earthquakeLocation;
     }
 
-    public String getEarthquakeDate() {
+    public long getEarthquakeDate() {
         return earthquakeDate;
     }
 }
