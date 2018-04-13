@@ -87,6 +87,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return convertView;
     }
 
+
     private int getMagnitudeColor(double magnitude) {
         // Change magnitude circle color based on magnitude
         int magnitudeResColor;
@@ -134,7 +135,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     }
 
     //Return the formatted date string (i.e. "4:30 PM") from a Date object.
-
     private String formatTime(Date dateObject) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm");
         return timeFormat.format(dateObject);

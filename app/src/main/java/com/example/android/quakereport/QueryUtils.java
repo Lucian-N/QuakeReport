@@ -64,10 +64,11 @@ public final class QueryUtils {
                 // format magnitude with only one decimal
                 double mag = propertiesObject.getDouble("mag");
                 String place = propertiesObject.getString("place");
+                String url = propertiesObject.getString("url");
                 long time = propertiesObject.getLong("time");
 
                 // pass in information to Adapter to populate list
-                earthquakes.add(new Earthquake(mag, place, time));
+                earthquakes.add(new Earthquake(mag, place, time, url));
 
             }
 
