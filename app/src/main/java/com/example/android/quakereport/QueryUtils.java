@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -65,12 +64,8 @@ public final class QueryUtils {
                 String place = propertiesObject.getString("place");
                 long time = propertiesObject.getLong("time");
 
-                // convert Date
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-                String dateToDisplay = dateFormatter.format(time);
-
                 // pass in information to Adapter to populate list
-                earthquakes.add(new Earthquake(mag, place, dateToDisplay));
+                earthquakes.add(new Earthquake(mag, place, time));
 
             }
 
