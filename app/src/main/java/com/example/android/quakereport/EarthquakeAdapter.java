@@ -1,6 +1,8 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +74,57 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Display the time of the current earthquake in that TextView
         timeView.setText(formattedTime);
 
+        // Set the proper background color on the magnitude circle.
+        // Fetch the background from the TextView, which is a GradientDrawable.
+        GradientDrawable magnitudeCircle = (GradientDrawable) earthquakeMag.getBackground();
+
+        // Get the appropriate background color based on the current earthquake magnitude
+        int magnitudeColor = getMagnitudeColor(currentEarthquake.getEarthquakeMagnitude());
+
+        // Set the color on the magnitude circle
+        magnitudeCircle.setColor(magnitudeColor);
+
         return convertView;
+    }
+
+    private int getMagnitudeColor(double magnitude) {
+        // Change magnitude circle color based on magnitude
+        int magnitudeResColor;
+        int magnitudeInt = (int) Math.floor(magnitude);
+        switch (magnitudeInt) {
+            case 0:
+            case 1:
+                magnitudeResColor = R.color.magnitude1;
+                break;
+            case 2:
+                magnitudeResColor = R.color.magnitude2;
+                break;
+            case 3:
+                magnitudeResColor = R.color.magnitude3;
+                break;
+            case 4:
+                magnitudeResColor = R.color.magnitude4;
+                break;
+            case 5:
+                magnitudeResColor = R.color.magnitude5;
+                break;
+            case 6:
+                magnitudeResColor = R.color.magnitude6;
+                break;
+            case 7:
+                magnitudeResColor = R.color.magnitude7;
+                break;
+            case 8:
+                magnitudeResColor = R.color.magnitude8;
+                break;
+            case 9:
+                magnitudeResColor = R.color.magnitude9;
+                break;
+            default:
+                magnitudeResColor = R.color.magnitude10plus;
+                break;
+        }
+        return ContextCompat.getColor(getContext(), magnitudeResColor);
     }
 
     //Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
