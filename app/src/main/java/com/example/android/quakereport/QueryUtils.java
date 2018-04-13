@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -58,14 +59,19 @@ public final class QueryUtils {
             for (int i = 0; i < quakeArr.length(); i++) {
                 JSONObject ithObject = quakeArr.getJSONObject(i);
 
-                //get earthquake information from properties
+                //get earthquake mag,location and date from properties
                 JSONObject propertiesObject = ithObject.getJSONObject("properties");
+
+                // format magnitude with only one decimal
                 double mag = propertiesObject.getDouble("mag");
+                DecimalFormat magFormat = new DecimalFormat("0.0");
+                String output = magFormat.format(mag);
+
                 String place = propertiesObject.getString("place");
                 long time = propertiesObject.getLong("time");
 
                 // pass in information to Adapter to populate list
-                earthquakes.add(new Earthquake(mag, place, time));
+                earthquakes.add(new Earthquake(output, place, time));
 
             }
 

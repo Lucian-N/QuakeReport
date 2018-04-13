@@ -18,4 +18,5 @@
     <string name="placeholderDate">PlaceholderDate</string>
     <string name="placeholderLocation">PlaceHolderLocation</string>
     <string name="placeholderMag">PlaceholderMagnitutde</string>
+    <string name="noCoords">Near</string>
 </resources>

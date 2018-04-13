@@ -39,7 +39,21 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         earthquakeMag.setText(Double.valueOf(currentEarthquake.getEarthquakeMagnitude()).toString());
 
         TextView earthquakeLocation = (TextView) convertView.findViewById(R.id.quakeLocation);
-        earthquakeLocation.setText(currentEarthquake.getEarthquakeLocation());
+        TextView earthquakeCoords = (TextView) convertView.findViewById(R.id.quakeCoords);
+        String quakeLoc = currentEarthquake.getEarthquakeLocation();
+        String[] locationString = quakeLoc.split(" of ");
+
+        if (locationString.length == 2) {
+            String locationOne = locationString[0];
+            String locationTwo = locationString[1];
+            earthquakeCoords.setText(locationOne);
+            earthquakeLocation.setText(locationTwo);
+        } else {
+            earthquakeCoords.setText(R.string.noCoords);
+            earthquakeLocation.setText(currentEarthquake.getEarthquakeLocation());
+        }
+
+        //earthquakeLocation.setText(currentEarthquake.getEarthquakeLocation());
 
         Date dateObject = new Date(currentEarthquake.getEarthquakeDate());
 
