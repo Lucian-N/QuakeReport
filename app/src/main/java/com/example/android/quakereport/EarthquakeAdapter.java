@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.Date;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
+    final String STRING_SPLIT = " of ";
     public EarthquakeAdapter(Context context, ArrayList<Earthquake> earthquakes) {
         super(context, 0, earthquakes);
     }
@@ -36,12 +38,14 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
          */
 
         TextView earthquakeMag = (TextView) convertView.findViewById(R.id.quakeMag);
-        earthquakeMag.setText(Double.valueOf(currentEarthquake.getEarthquakeMagnitude()).toString());
+        DecimalFormat magFormat = new DecimalFormat("0.0");
+        String output = magFormat.format(Double.valueOf(currentEarthquake.getEarthquakeMagnitude()));
+        earthquakeMag.setText(output);
 
         TextView earthquakeLocation = (TextView) convertView.findViewById(R.id.quakeLocation);
         TextView earthquakeCoords = (TextView) convertView.findViewById(R.id.quakeCoords);
         String quakeLoc = currentEarthquake.getEarthquakeLocation();
-        String[] locationString = quakeLoc.split(" of ");
+        String[] locationString = quakeLoc.split(STRING_SPLIT);
 
         if (locationString.length == 2) {
             String locationOne = locationString[0];
@@ -52,9 +56,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             earthquakeCoords.setText(R.string.noCoords);
             earthquakeLocation.setText(currentEarthquake.getEarthquakeLocation());
         }
-
-        //earthquakeLocation.setText(currentEarthquake.getEarthquakeLocation());
-
         Date dateObject = new Date(currentEarthquake.getEarthquakeDate());
 
         // Find the TextView with view ID date
