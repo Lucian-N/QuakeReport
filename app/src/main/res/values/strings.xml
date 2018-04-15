@@ -19,4 +19,5 @@
     <string name="placeholderLocation">PlaceHolderLocation</string>
     <string name="placeholderMag">PlaceholderMagnitutde</string>
     <string name="noCoords">Near</string>
+    <string name="no_earthquakes">No earthquakes found.</string>
 </resources>
